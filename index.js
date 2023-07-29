@@ -1,3 +1,14 @@
+let computerScore = 0;
+let playerScore = 0;
+
+const computer = document.querySelector(".computer");
+const player = document.querySelector(".player");
+const result = document.querySelector(".result");
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+const reset = document.querySelector(".reset");
+
 function getComputerChoice() {
 	return Math.floor(Math.random() * 3);
 }
@@ -12,61 +23,94 @@ function playRound(player, computer) {
 	}
 }
 
-function game() {
-    let playerWins = 0;
-    let computerWins = 0;
-    do{
-        let player = prompt("Please input rock paper or scissor: ");
+rock.addEventListener("click", () => {
+	if (playerScore < 5 && computerScore < 5) {
+		switch (playRound(0, getComputerChoice())) {
+			case 0:
+				computerScore++;
+				computer.textContent = "Computer Score = " + computerScore;
+				if (computerScore < 5) {
+					result.textContent = "Computer Wins";
+				} else {
+					result.textContent = "You Lose :(";
+				}
+				break;
+			case 1:
+				playerScore++;
+				player.textContent = "Your Score = " + playerScore;
+				if (playerScore < 5) {
+					result.textContent = "You Win";
+				} else {
+					result.textContent = "Computer Loses :)";
+				}
+				break;
+			default:
+				result.textContent = "Tie";
+				break;
+		}
+	}
+});
 
-        switch (player.toLowerCase()) {
-            case "rock":
-                    switch(playRound(0,getComputerChoice())){
-                        case 0:
-                            console.log("You Lose, paper beats rock");
-                            computerWins++;
-                            break;
-                        case 1:
-                            console.log("You Win, rock beats scissors!");
-                            playerWins++;
-                            break;
-                        case 2:
-                            console.log("Tie");
-                    }
-                
-                    break;
-            case "paper":
-                switch(playRound(1,getComputerChoice())){
-                    case 0:
-                        console.log("You Lose, scissors beats paper");
-                        computerWins++;
-                        break;
-                    case 1:
-                        console.log("You Win, paper beats rock!");
-                        playerWins++;
-                        break;
-                    case 2:
-                        console.log("Tie");
-                }
-                break;
-            case "scissor":
-                switch(playRound(2,getComputerChoice())){
-                    case 0:
-                        console.log("You Lose, rock beats scissors");
-                        computerWins++;
-                        break;
-                    case 1:
-                        console.log("You Win, scissors beats paper!");
-                        playerWins++;
-                        break;
-                    case 2:
-                        console.log("Tie");
-                }
-                break;
-            default:
-                let player = "";
-                console.log("Try again");
-        }
-    } while (playerWins<5 && computerWins<5);
-    console.log((playerWins==5)?"You Win :3":"You lose :(");
-}
+paper.addEventListener("click", () => {
+	if (playerScore < 5 && computerScore < 5) {
+		switch (playRound(1, getComputerChoice())) {
+			case 0:
+				computerScore++;
+				computer.textContent = "Computer Score = " + computerScore;
+				if (computerScore < 5) {
+					result.textContent = "Computer Wins";
+				} else {
+					result.textContent = "You Lose :(";
+				}
+				break;
+			case 1:
+				playerScore++;
+				player.textContent = "Your Score = " + playerScore;
+				if (playerScore < 5) {
+					result.textContent = "You Win";
+				} else {
+					result.textContent = "Computer Loses :)";
+				}
+				break;
+			default:
+				result.textContent = "Tie";
+				break;
+		}
+	}
+});
 
+scissors.addEventListener("click", () => {
+	if (playerScore < 5 && computerScore < 5) {
+		switch (playRound(0, getComputerChoice())) {
+			case 0:
+				computerScore++;
+				computer.textContent = "Computer Score = " + computerScore;
+				if (computerScore < 5) {
+					result.textContent = "Computer Wins";
+				} else {
+					result.textContent = "You Lose :(";
+				}
+				break;
+			case 1:
+				playerScore++;
+				player.textContent = "Your Score = " + playerScore;
+				if (playerScore < 5) {
+					result.textContent = "You Win";
+				} else {
+					result.textContent = "Computer Loses :)";
+				}
+				break;
+			default:
+				result.textContent = "Tie";
+				break;
+		}
+	}
+});
+
+reset.addEventListener("click", ()=>{
+    computerScore = 0;
+    playerScore = 0;
+    player.textContent = "Your Score = 0";
+    computer.textContent = "Computer Score - 0";
+    result.textContent = "";
+})
