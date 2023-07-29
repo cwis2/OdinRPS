@@ -70,4 +70,3 @@ function game() {
     console.log((playerWins==5)?"You Win :3":"You lose :(");
 }
 
-game();
